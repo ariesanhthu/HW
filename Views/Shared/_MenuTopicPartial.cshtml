@@ -1,0 +1,8 @@
+﻿@model IEnumerable<SubjectArtical>
+
+<div class = "d-flex flex-wrap flex-row">
+    @foreach(var item in Model)
+    {
+        <a asp-controller="PostNewFeed" asp-action="PostByTopic" asp-route-IdTopic="@item.Id">@item.Name</a>
+    }
+</div>

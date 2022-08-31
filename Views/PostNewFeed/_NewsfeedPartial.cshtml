@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PostNewFeed>
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class=" d-flex justify-content-center flex-row flex-wrap mt-3 ml-5 p-0">
+            <div class="card rounded shadow" style="width: 100%" id="@item.Id">
+                <!--Thông tin đầu bài Post-->
+                <div class="card-header">
+                    <div class="card-name d-flex flex-row align-items-baseline m-0">
+                        <img src="~/media/NewsFeed/noimg.png" class="card-ic ic-type-binding" style="width:3rem"/>
+                        <label>@item.Time</label>
+                    </div>
+                </div>
+                <!--Content-->
+                <div class="card-body p-3">
+                        <label class="text-center">@item.Title</label>
+                          <div class="text-body">
+                              @Html.Raw(@item.Content)
+                          </div>  
+                          @if(@item.Image != "noimg.png")
+                          {
+                            <div class="card-img">
+                                    <img style = "width:10rem" class="rounded" src="~/media/NewsFeed/@item.Image"/>
+                            </div>
+                          }
+                </div> 
+
+                <!--Tương tác-->
+                <div class="card-footer">
+                        <div class="float-left">
+                            <div class="d-flex justify-content-start">
+                               like
+                            </div>
+                            <div onclick=SavePost("/PostSaved/SavePost?id="+@item.Id.ToString())>
+                                <img id="icsave-@item.Id" src="~/ic/ic-unsave.png" width="20"> 
+                            </div>
+                        </div>
+                </div> 
+            </div>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,37 @@
+﻿@model PostNewFeed
+
+@{
+    ViewData["Title"] = "Bài viết";
+}
+
+<h1>@Model.Title</h1>
+<hr />
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+           <label asp-for="Time" class="control-label"></label>
+        </dt>
+        
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @Html.Raw(Model.Content)
+        </dt>
+         <dd class = "col-sm-10">
+            @Model.Content
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Ảnh</label>
+        </dt>
+
+        <dd class = "col-sm-10">
+            <img src="~/media/NewsFeed/@Model.Image" width="200" alt="" />
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Upsert" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

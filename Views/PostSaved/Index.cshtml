@@ -1,0 +1,49 @@
+﻿@model PostSavedViewModel
+<div class="row">
+    @*Menu*@
+    <div class="col-2 p-0 ml-0">
+        @await Component.InvokeAsync("MenuTopic")
+    </div>
+
+    @*Newsfeed*@
+    <div class ="col-10 pl-5">
+
+        @if(Model.TotalAmount > 0)
+        {
+            <div class="container ml-5 mt-3">
+                <div class="table">
+                    <div class="row">
+                            <a onclick=Clear("/PostSaved/Clear") class="nav-link bg-warning rounded" style="cursor:pointer">
+                                Xóa tất cả
+                            </a>
+                            &nbsp;
+                            <span class="bg-primary rounded col-3">Số lượng bài viết đã lưu: @Model.TotalAmount</span>
+           
+                    </div>
+                    <div class="column">
+                        @foreach(var item in Model.PostSavedItems)
+                        {
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="btn-block">
+                                        <p class="card-title">@item.Title</p>
+                                        <p class="card-text">@item.Time</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="container pl-5">
+
+                <p>Bạn chưa saved bài viết nào!</p>
+
+                <a asp-controller="PostNewFeed" asp-action="Index" class="btn-primary nav-link">Truy cập bảng tin</a>
+            </div>
+        }
+    </div>
+</div>

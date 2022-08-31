@@ -1,0 +1,29 @@
+﻿@model IEnumerable<SubjectArtical>
+
+<div class = "d-flex flex-wrap flex-column p-0 mt-3" style="width:15rem">
+    <ul class="list-group-horizontal-sm">
+        <li class="list-group-item table-hover">
+            <a class = "nav-link" asp-controller="PostSaved" asp-action="Index">Bài viết đã lưu</a>
+        </li>
+        <li class="list-group-item table-hover">
+            @{
+                var picked = @ViewBag.PostTopicId == null ?  "text-primary" : "text-secondary";
+
+                <a class = "@picked nav-link" asp-controller="PostNewFeed" asp-action="Index">Tất cả bài viết</a>
+            }  
+        </li>
+
+    @foreach(var item in Model)
+    {
+
+        var pickTopic = item.Id == ViewBag.PostTopicId ? "text-primary" : "text-secondary";
+     
+        <li class="list-group-item table-hover">
+            <a asp-controller="PostNewFeed" asp-action="Index" asp-route-IdTopic="@item.Id" 
+                class="@pickTopic nav-link">
+                @item.Name
+            </a>
+        </li>
+    }
+    </ul>
+</div>

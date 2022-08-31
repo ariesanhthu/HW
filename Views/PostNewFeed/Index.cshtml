@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PostNewFeed>
+@{
+    ViewData["Title"] = "Bảng tin";
+}
+@*
+    - Thanh menu chủ đề
+
+    - Các bài viết (chỉnh lại thành list - small) => Click vào bài viết -> Một blog chi tiết
+
+    - Chế độ lưu bài -> hiển thị trên thanh menu (số lượng bài viết đã lưu) 
+
+    [gọi Method từ Controller PostNewFeed 
+    -> Truyền vào lớp quản lý bài viết đã lưu (PostSaved.cs)
+    Session -> ViewBag -> TotalAmountSaved -> View (Thuộc Compent MenuTopic)
+
+    => Cái cần cập nhật là MENUTOPIC - viewcomponent
+    ]
+*@
+<div class="row">
+
+    <!--Menu-->
+   @* <div>
+        @await Component.InvokeAsync("SmallPostTotal")
+    </div>*@
+    <div class = "col-2 p-0 ml-0">
+        @await Component.InvokeAsync("MenuTopic")
+    </div>
+
+    <!--Bài viết-->
+    <div class = "col-10 p-0">
+        <partial name="_NewsfeedPartial" model="@Model"/>
+    </div>
+</div>
