@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HW.Services;
+using System;
+
 namespace HW.Models
 {
     public class PostNewFeed
@@ -14,7 +16,9 @@ namespace HW.Models
         [Display(Name = "Nội dung")]
         public string Content { get; set; }
         [Display(Name = "Thời gian")]
-        public string Time { get; set; }
+        public string OnCreated { get; set; }
+        public string OnUpdated { get; set; }
+        public string Author { get; set; }
         public string Image { get; set; }
         public int SubjectId { get; set; }
         [ForeignKey("SubjectId")]
@@ -22,5 +26,6 @@ namespace HW.Models
         [NotMapped]
         [FileExtension]
         public IFormFile ImgUpload { get; set; }
+        public bool IsPublish { get; set; }
     }
 }

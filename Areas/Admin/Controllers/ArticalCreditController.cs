@@ -1,5 +1,6 @@
 ﻿using HW.Models;
 using HW.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace HW.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     [Area("admin")]
     public class ArticalCreditController : Controller
     {

@@ -3,7 +3,16 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "ckeditor@4.19.1",
+      "provider": "unpkg",
+      "library": "@microsoft/signalr@latest",
+      "destination": "wwwroot/js/signalr",
+      "files": [
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.js"
+      ]
+    },
+    {
+      "library": "ckeditor@4.20.0",
       "destination": "wwwroot/lib/ckeditor/"
     }
   ]

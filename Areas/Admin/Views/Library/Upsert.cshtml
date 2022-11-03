@@ -1,0 +1,96 @@
+﻿@using Newtonsoft.Json
+@model LibraryArticalClass
+@{
+    var data = @ViewBag.TagCreadits;
+    var query = "new ej.data.Query()";
+}
+<h4>Thêm mới</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubjectId" class="control-label"></label>
+                <select asp-for="SubjectId" asp-items="@ViewBag.SubjectId" class="form-control">
+                    <option value="0">Chọn một chủ đề</option>
+                </select>
+                <span asp-validation-for="SubjectId" class="text-danger"></span>
+             </div>
+            <!--Credit-->
+                <ejs-multiselect id="list" placeholder="Chọn chủ đề" query="@query" dataSource="@data"
+                            allowFiltering="true" filtering="onFiltering">
+                <e-multiselect-fields text="Name" value="Name"></e-multiselect-fields>
+                </ejs-multiselect>
+            
+
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <textarea asp-for="Url" class="form-control"></textarea>
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+
+
+
+             <!--Button-->
+            <div class="form-group row">
+                <div class="col-3 offset-3">
+                    <button class="btn btn-primary form-control" type="submit">
+                        Lưu 
+                    </button>
+                </div>
+                <div class="col-3">
+                    <a asp-action="Index" class="btn btn-success form-control">Hủy
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+ <style>
+        .control-fluid, .container-fluid {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .control-content .control-section{
+            border-width: 0px !important;
+        }
+
+        .control-section .control-wrapper {
+            width: 80%;
+            margin: 0 auto;
+            min-width: 185px;
+            padding-top: 15px
+        }
+
+        .e-bigger .control-section .control-wrapper {
+            width: 100%;
+        }
+
+        .e-multi-select-wrapper .e-chips > .e-chipcontent {
+            max-width: 80%;
+            white-space: nowrap;
+            line-height: normal;
+        }
+    </style>
+ 
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+    <script type="text/javascript">
+        function onFiltering(e) {
+            var query = new ej.data.Query();
+            // frame the query based on search string with filter type.
+            query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
+            // pass the filter data source, filter query to updateData method.
+            e.updateData(@Html.Raw(JsonConvert.SerializeObject(data)), query);
+        }
+    </script>
+}

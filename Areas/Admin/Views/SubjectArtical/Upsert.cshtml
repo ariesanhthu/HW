@@ -4,13 +4,20 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+            <!--Upload Icon-->
+             <div class="form-group">
+                <label asp-for="IconUpload" class="control-label"></label>
+                <input asp-for="IconUpload" class="form-control" />
+                <span asp-validation-for="IconUpload" class="text-danger"></span>
+            </div>
+
 
              <!--Button-->
             <div class="form-group row">

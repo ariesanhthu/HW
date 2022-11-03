@@ -1,0 +1,84 @@
+﻿@model EditRoomVM
+
+@{
+    ViewData["Title"] = "Chỉnh sửa lớp";
+}
+
+<h1>Chỉnh sửa thông tin lớp</h1>
+<br/>
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (@Model.TeacherId != null)
+            {
+                <input type="hidden" name="TeacherId" value="@Model.TeacherId" />
+            }
+            @if (@Model.RoomId != null)
+            {
+                <input type="hidden" name="RoomId" value="@Model.RoomId" />
+            }
+            <div class="form-group">
+                 <label asp-for="RoomName" class="control-label"></label>
+                    <input asp-for="RoomName" class="form-control" />
+            </div>
+            <div class="form-group">
+                 <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h2>Thêm học sinh vài lớp: <span class="badge badge-primary">@Model.RoomName</span></h2>
+                    <table class="table table-bordered">
+                        @if (Model.NonMembers.Count() == 0)
+                        {
+                            <tr><td>Đã thêm tất cả học sinh vào lớp!</td></tr>
+                        }
+                        else
+                        {
+                            foreach (AppUser user in Model.NonMembers)
+                            {
+                                <tr>
+                                    <td>@user.UserName</td>
+                                    <td>
+                                        <input type="checkbox" value="@user.Id" name="AddIds" />
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+                <div class="col-6">
+                    <h2>Xóa học sinh khỏi lớp <span class="badge badge-primary">@Model.RoomName</span></h2>
+                    <table class="table table-bordered">
+                        @if (Model.Members.Count() == 0)
+                        {
+                            <tr><td>Chưa có học sinh nào!</td></tr>
+                        }
+                        else
+                        {
+                            foreach (AppUser user in Model.Members)
+                            {
+                                <tr>
+                                    <td>@user.UserName</td>
+                                    <td>
+                                        <input type="checkbox" value="@user.Id" name="DeleteIds" />
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Trở lại</a>
+</div>
+

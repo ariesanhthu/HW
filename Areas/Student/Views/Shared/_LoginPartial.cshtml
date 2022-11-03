@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Identity.SignInManager<AppUser> _signInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<AppUser> _userManager
+@if (_signInManager.IsSignedIn(User))
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Hello @((await _userManager.GetUserAsync(User)).FirstName)
+        </a>
+        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item nav-link" href="/Account/Logout">Đăng xuất</a>
+            <a class="dropdown-item nav-link" href="/Account/Detail">Tài khoản</a>
+
+       
+
+        </div>
+    </li>
+}

@@ -1,4 +1,16 @@
-﻿<a class="nav-link text-dark" asp-area="admin" asp-controller="PostNewFeeds" asp-action="index">Bảng tin</a>
-<a class="nav-link text-dark" asp-area="admin" asp-controller="ArticalCredit" asp-action="index">Liên kết</a>
-<a class="nav-link text-dark" asp-area="admin" asp-controller="SubjectArtical" asp-action="index">Chủ đề bài viết</a>
+﻿<li class="btn btn-dark dropdown text-decoration-none">
+    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <label class="text-light">Các mục quản trị</label>       
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="nav-link dropdown-item" asp-area="admin" asp-controller="PostNewFeeds" asp-action="index">Bảng tin</a>
+        <a class="nav-link dropdown-item" asp-area="admin" asp-controller="ArticalCredit" asp-action="index">Liên kết</a>
+        <a class="nav-link dropdown-item" asp-area="admin" asp-controller="SubjectArtical" asp-action="index">Chủ đề bài viết</a>
+        <a class="nav-link dropdown-item" asp-area="admin" asp-controller="role" asp-action="index">Roles</a>
+        <a class="nav-link dropdown-item" asp-area="admin" asp-controller="Classroom" asp-action="index">Phòng học</a>
+        <a class="nav-link dropdown-item" asp-area="admin" asp-controller="Library" asp-action="index">Thư viện</a>
+        <a class="nav-link dropdown-item" asp-area="admin" asp-controller="Category" asp-action="index">Chuyên đề</a>
+    </div>
 
+
+</li>

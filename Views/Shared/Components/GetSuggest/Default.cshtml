@@ -1,0 +1,29 @@
+﻿@model List<LibraryArticalClass>
+
+<div class="cards d-flex flex-row flex-wrap">
+    @foreach (var item in Model)
+    {
+        <div class="d-flex flex-row flex-wrap mt-2 ml-2">
+        <div class="card rounded shadow">
+            <div class="card-body p-3">
+                <div class="card-name d-flex flex-row align-items-baseline m-0">
+                    <i class="fa-regular fa-star-sharp" style="color:#000!important"></i>
+                    <a class="text-sm ml-1" href="@item.Url" target="blank"style="color: black;">@item.Name</a>
+                </div>
+                     <div class="card-tag">
+                        <div class="float-left">
+                                <div class="d-flex flex-wrap justify-content-start">
+                                   @if(item.TagCreadits!=null)
+                                    @foreach(var tag in @item.TagCreadits)
+                                    {
+                                        <a href="@tag.Url" target="blank" class="tag" ><p class="text-tag">@tag.Name</p></a>
+                                    }
+                                </div>
+                        </div>
+                        <i class="fa-solid fa-eye ic-view float-right"></i>
+                    </div>
+                </div>                                
+            </div> 
+        </div>
+    }
+</div>

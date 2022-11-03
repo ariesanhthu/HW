@@ -1,0 +1,40 @@
+﻿@model EmailConfirm
+@{
+    ViewData["Title"] = "Confirm email";
+}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            @if (Model.EmailVerified == true)
+            {
+                <div class="alert alert-success" role="alert">
+                    <p>Bạn đã xác thực email thành công!</p>
+                    <a asp-controller="Home" asp-action="Index" class="text-nav">Đến trang chủ</a>
+                </div>
+            }
+            else
+            {
+                if (Model.EmailSent)
+                {
+                    <p>Mã xác thực đã được gửi đến Email của bạn!</p>
+                }
+
+                else
+                {
+                    <p>Chúng tôi đã gửi mã đến Email của bạn. Nếu không nhận được, ấn vào nút bên dưới để gửi lại mã!</p>
+                }
+
+                <form asp-action="ConfirmEmail">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Email" />
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Gửi lại mã" class="btn btn-primary" />
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+</div>

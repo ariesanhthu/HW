@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Room>
+
+@{
+    ViewData["Title"] = "Lớp học";
+}
+  <!--Lớp học quản lý thẻ-->
+<div class="row col-12 pr-0">
+                    <!--Cột icon - trống-->
+                    <div class="col-1 mt-3 px-4"><i class="fa-solid fa-screen-users fa-2xl ic-main"></i></div>
+                    <!--Phần đầu-->
+                    <div class="col-11 row">             
+                        <div class="col-12 d-flex align-items-baseline mt-3">
+                            <div class="m-0">
+                                <label class="text-normal">Lớp học</label>
+                            </div>
+                            <!--Button thêm lớp-->
+
+                            <a class="ml-auto p-2" style="border-style:none; "
+                                asp-action="Create" asp-controller="Classroom" >
+                                <i class="fa-solid fa-circle-plus ic-main  fa-2xl"></i>
+                            </a>
+
+                        </div>
+                            <!--Thẻ lớp-->
+                            <div class="d-flex flex-row flex-wrap">
+                                @foreach (var item in Model)
+                                {
+                                    <!--Card-->
+                                    <a asp-action="Detail" asp-route-id=@item.RoomId class="cards ml-2 mt-2 text-decoration-none">
+                                            <div class="d-flex flex-row">
+                                                <div class="card shadow card-border">
+                                                    <div class="card-body m-0 @*p-3 px-4*@">
+                                                        <div class="card-name m-0 p-0">             
+                                                            <!--BINDING-->
+                                                            <div class="d-flex flex-row align-items-baseline m-0 p-0"><b class="text-sm">@item.Name</b> <p class="text-sm m-0"style="padding-left: 5px;">(36 học sinh)</p></div>
+                                                            <p class="text-sm m-0 p-0 ">Số tiết đã dạy: 1/35</p>
+                                                            <p class="text-sm m-0 p-0">Số bài kiểm tra: 1</p>
+                                                            <p class="text-sm m-0 p-0">Số bài tập: 1</p> 
+                                                        </div>                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </a>
+                                }
+                             </div>
+                        </div>
+                    </div>
+<style>
+.card-border{
+  border: 2px solid #2f327d !important;
+  border-radius: 30px !important;
+}
+.text-sm{
+  font-size: smaller;
+}
+.ic-main{
+    color:#f48c06;
+}
+.cards{
+    color:#000;
+}
+.cards:hover{
+    color: darkgray;
+}
+</style>

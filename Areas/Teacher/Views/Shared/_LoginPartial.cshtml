@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Identity.SignInManager<AppUser> _signInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<AppUser> _userManager
+@if (_signInManager.IsSignedIn(User))
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Hello @((await _userManager.GetUserAsync(User)).FirstName)
+        </a>
+        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+             <a class="dropdown-item nav-link" href="/Account/Logout">Đăng xuất</a>
+            <a class="dropdown-item nav-link" href="/Account/Detail">Tài khoản</a>
+
+            
+            @if (User.IsInRole("admin"))
+            {
+                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="dropdown-item nav-link">Quản lý Website</a>
+            }
+        </div>
+    </li>
+}
+else
+{
+    <li class="nav-item d-flex">
+            <a class="btn-main align-self-center" asp-controller="Account" asp-action="Register">Đăng ký</a>
+    </li>
+    <li class="nav-item d-flex mr-1">
+        <a class="btn-main align-self-center" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+    </li>
+}

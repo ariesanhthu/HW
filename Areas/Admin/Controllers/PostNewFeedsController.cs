@@ -1,5 +1,6 @@
 ﻿using HW.Models;
 using HW.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace HW.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     [Area("admin")]
     public class PostNewFeedsController : Controller
     {
@@ -63,9 +65,7 @@ namespace HW.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                // set ngày tháng cập nhật
 
-                PostObj.Time = DateTime.Today.ToString("dd/MM/yyyy");
                 string ImgName = "noimg.png";
 
                 //Thêm ảnh vào thư mục root
@@ -89,11 +89,23 @@ namespace HW.Areas.Admin.Controllers
                 if (PostObj.Id == 0)
                 {
                     //create
+                    var SubObj = _context.SubjectArticals.Find(PostObj.SubjectId);
+                    SubObj.Total++;
+
+                    //ngày tạo
+                    PostObj.OnCreated = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+                    PostObj.OnUpdated = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+
+                    _context.SubjectArticals.Update(SubObj);
                     _context.PostNewFeeds.Add(PostObj);
                 }
                 else
                 {
                     //update data
+                    // set ngày tháng cập nhật
+
+                    PostObj.OnUpdated = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+
                     _context.PostNewFeeds.Update(PostObj);
                 }
                 await _context.SaveChangesAsync();
@@ -134,7 +146,7 @@ namespace HW.Areas.Admin.Controllers
             //xóa dữ liệu trong Db
             _context.PostNewFeeds.Remove(PostFromDb);
             await _context.SaveChangesAsync();
-            return Json(new { success = true, message = "Delete successful!" });
+            return Json(new { success = true, message = "Xóa thành công!" });
         }
         #endregion
 

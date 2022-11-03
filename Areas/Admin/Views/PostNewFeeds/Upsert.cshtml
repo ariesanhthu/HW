@@ -1,9 +1,11 @@
 ﻿@model PostNewFeed
+<!--Froala editor-->
+<link href="~/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/js/froala_editor.pkgd.min.js"></script>
 
 <br/>
-<h2 class="test-info">@(ViewBag.Id!=0 ? "Edit" : "Create") Account</h2>
+<h2 class="test-info">@(ViewBag.Id!=0 ? "Chỉnh sửa" : "Tạo") Bài viết</h2>
 <br/>
-<h4>Tạo bài viết</h4>
 <hr />
 <div class="row">
     <div class="col-md-12">
@@ -17,13 +19,14 @@
             <div class="form-group">
                 <label asp-for="SubjectId" class="control-label"></label>
                 <select asp-for="SubjectId" asp-items="@ViewBag.SubjectId" class="form-control">
-                    <option value="0">Choose a Subject</option>
+                    <option value="0">Chọn môn học</option>
                 </select>
                 <span asp-validation-for="SubjectId" class="text-danger"></span>
              </div>
             <div class="form-group">
                 <label asp-for="Content" class="control-label"></label>
-                <textarea asp-for="Content" class="form-control"></textarea>
+                <textarea id="MyEditor" asp-for="Content" class="form-control">
+                </textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -49,10 +52,15 @@
 </div>
 
 @section Scripts{
+   
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
     <partial name="_ValidationScriptsPartial"/>
+   
     <script>
-        CKEDITOR.replace("Content");
+            var editor = new FroalaEditor('#MyEditor');
+    </script>
 
+    <script>
         $("#imgpreview").change(function () {
             readURL(this);
         });

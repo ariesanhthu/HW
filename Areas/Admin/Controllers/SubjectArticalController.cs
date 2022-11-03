@@ -1,5 +1,6 @@
 ﻿using HW.Models;
 using HW.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,15 +11,19 @@ using System.Threading.Tasks;
 
 namespace HW.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     [Area("admin")]
     public class SubjectArticalController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment webHostEnvironment;
         [BindProperty]
         public SubjectArtical SubObj { get; set; }
-        public SubjectArticalController(ApplicationDbContext context)
+        public SubjectArticalController(ApplicationDbContext context,
+                                        IWebHostEnvironment env)
         {
             _context = context;
+            webHostEnvironment = env;
         }
         public IActionResult Index()
         {
@@ -45,20 +50,40 @@ namespace HW.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert()
+        public async Task<IActionResult> Upsert()
         {
             if (ModelState.IsValid)
             {
+                string ImgName = "noimg.png";
 
+                //Thêm ảnh vào thư mục root
+                if (SubObj.IconUpload != null)
+                {
+                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "ic/Topic");
+
+                    ImgName = Guid.NewGuid().ToString() + "_" + SubObj.IconUpload.FileName;
+
+                    string filePath = Path.Combine(uploadsDir, ImgName);
+
+                    FileStream fs = new FileStream(filePath, FileMode.Create);
+
+                    await SubObj.IconUpload.CopyToAsync(fs);
+
+                    fs.Close();
+                }
+
+                SubObj.Icon = ImgName;
                 if (SubObj.Id == 0)
                 {
+                    //Create
                     _context.SubjectArticals.Add(SubObj);
                 }
                 else
                 {
+                    //Update
                     _context.SubjectArticals.Update(SubObj);
                 }
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(SubObj);

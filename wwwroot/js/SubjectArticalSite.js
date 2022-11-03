@@ -15,8 +15,8 @@ function loadDataTable() {
         "columnDefs": [{ "defaultContent": "0", "targets": "_all" }],
         "columns": [
             { "data": "name", "width": "40%" },
-            {
-                "data": "total", "width": "40%"},
+            //{
+            //    "data": "total", "width": "40%"},
             {
                 "data": "id",
                 "render": function (data) {

@@ -1,0 +1,123 @@
+﻿@model LibraryViewModel
+
+@*
+    THƯ VIỆN
+
+    MENU partial
+     -> Form -> POST -> Controller Index(Model)
+
+     => Model -> Partial Resul Seaching
+*@
+<div class="container w-100 h-100 p-0" styple="margin-left:20rem; 
+    overflow-y: scroll;">
+
+    <!--Menu-->
+   @* <div>
+        @await Component.InvokeAsync("SmallPostTotal")
+    </div>*@
+    @*
+       
+
+    *@
+    <ejs-sidebar id="sidebar" width="280px">
+	<e-content-template>
+        @await Component.InvokeAsync("ResultStudent")
+        <!--Form Filtering-->
+		 <partial name="_MenuLibraryPartial"/>
+           <div class="center-align">
+            <!-- button element declaration -->
+           
+        </div>
+	</e-content-template>
+</ejs-sidebar>
+
+    <!--Bài viết-->
+    <div class = "main-content">
+         <section class="lib-section-1">
+            <div class="box justify-content-lg-start mt-3 ml-3">
+                <div class="d-flex align-baseline">
+                    <img class="ic-lg" src="../ic/ic_idea.png" />
+                    <label class="text-title">Gợi ý</label>
+                </div>
+                    @await Component.InvokeAsync("GetSuggest")
+            </div>
+        </section>
+
+        <!---->
+        <section class="lib-section-1">
+            <div class="box justify-content-lg-start mt-3 ml-3">
+                <div class="d-flex align-baseline">
+                    <img class="ic-lg" src="../ic/ic_lesson.png" />
+                    <label class="text-title ml-2 mt-1">Bài học</label>
+                </div>
+                @if (@ViewBag.IsSearch == true)
+                    {
+                        <partial name="_ResultSearchingPartial" model="@Model"/>
+                    }
+            </div>
+        </section>
+    </div>
+</div>
+
+<style>
+    #sidebar {
+    background-color: #23233C;
+    color: #ffffff;
+    padding-top:6rem;
+    z-index: -1!important;
+   overflow: hidden;
+}
+body{
+   overflow: hidden;
+}
+.ic-warning {
+    color: #FFB632!important;
+}
+.ic-accepted {
+    color: #82D361!important;
+}
+.ic-view {
+    color: #C4C4C4!important;
+} 
+.ic-error {
+   color: #FC4755!important;
+}
+.text-sm{
+      font-size:medium;
+     font-weight:lighter;
+ }
+.text-title{
+  font-weight: bolder;
+  color: #000;
+  font-size: 20px;
+}
+.ic-lg {
+    width: 28px;
+    height: 28px;
+}
+.textnav-titile
+{
+    color: white;
+    font-size: 30px;
+    font-weight: 400;
+}
+.text-tag
+{
+    font-size: 9px;
+  font-weight: lighter;
+  color: white;
+  margin: 0px 10px;
+}
+.tag{
+  background-color: #82d361;
+  border-radius: 90px;
+  text-decoration: none;
+}
+.main-content{
+    width: 80%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 5px 24px;
+    float: right;
+}
+</style>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<HW.Models.Category>
+
+@{
+    ViewData["Title"] = "Thư viện";
+}
+
+<br/>
+
+<h1>Chuyên đề</h1>
+
+<div class="col-3">
+    <a asp-action="Upsert" asp-controller="Category" class="btn btn-info form-control text-white">Thêm bài</a>
+</div>
+<br/>
+<div class="col-12 border p-3">
+        <table id = "DT_load" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Tên chuyên đề</th>
+                    <th>Môn học</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.SubjectArtical.Name
+                        </td>
+                        <td>
+                            <a asp-action="Upsert" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Detail" asp-route-id="@item.Id">Details</a> |
+                                     <a class="text-danger" style='cursor:pointer; width:70px;'
+                                    onclick=Delete("/admin/Classroom/Delete?id="+@item.Id.ToString())>
+                                    Delete
+                                </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>

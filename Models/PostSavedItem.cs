@@ -21,7 +21,7 @@ namespace HW.Models
         {
             PostId = postnewsfeed.Id;
             Title = postnewsfeed.Title;
-            Time = postnewsfeed.Time;
+            Time = postnewsfeed.OnCreated;
         }
     }
 }

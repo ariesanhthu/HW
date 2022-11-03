@@ -68,3 +68,15 @@ function Clear(url) {
         }
     });
 }
+
+function UpdateSuccessful(url) {
+    $.ajax({
+        type: "POST",
+        url: url,
+        success: function (data) {
+            if (data.success) {
+                toastr.success(data.message);
+            }
+        }
+    });
+}

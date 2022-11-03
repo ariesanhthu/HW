@@ -1,0 +1,25 @@
+﻿<div class="main-content">
+    <div class="control-section col-lg-9" align='center'>
+        <ejs-accumulationchart id="container" load="load" enableAnimation="false">
+            <e-accumulationchart-center x="50%" y="50%"></e-accumulationchart-center>
+            <e-accumulationchart-tooltipsettings enable="true"></e-accumulationchart-tooltipsettings>
+            <e-accumulationchart-legendsettings visible="false">
+            </e-accumulationchart-legendsettings>
+            <e-accumulation-series-collection>
+                <e-accumulation-series dataSource="@ViewBag.dataSource" xName="xValue" yName="yValue" name="Bài tập" radius="70%" startAngle="0" endAngle="360" explodeIndex="5" explode="true" explodeOffset="10%">
+                    <e-accumulationseries-datalabel name="text" visible="true">
+                        <e-font fontWeight="600"></e-font>
+                    </e-accumulationseries-datalabel>
+                </e-accumulation-series>
+            </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+    </div>
+</div>
+<script>
+    function load(args) 
+    {
+        var indexedTheme = location.hash.split('/')[1];
+        indexedTheme = indexedTheme ? indexedTheme : 'Material';
+        args.accumulation.theme = (indexedTheme.charAt(0).toUpperCase() + indexedTheme.slice(1).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+    }
+</script>

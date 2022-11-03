@@ -1,14 +1,14 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+/*a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-}
+}*/
 
 /* Provide sufficient contrast against white background */
-a {
+/*a {
   color: #0366d6;
 }
 
@@ -22,11 +22,11 @@ a {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+/*html {
   font-size: 14px;
 }
 @media (min-width: 768px) {
@@ -49,23 +49,156 @@ html {
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+/*html {
   position: relative;
   min-height: 100%;
 }
 
-body {
+body {*/
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  /*margin-bottom: 60px;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  line-height: 60px;*/ /* Vertically center the text there */
+/*}*/
+
+
+/**/
+/*FONTS*/
+@font-face {
+    font-family: "rob";
+    src: url("../fonts/Roboto.ttf");
 }
+
+@font-face {
+    font-family: "rob";
+    src: url("../fonts/Roboto-Bold.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "rob";
+    src: url("../fonts/Roboto-Black.ttf");
+    font-weight: bolder;
+}
+
+@font-face {
+    font-family: "rob";
+    src: url("../fonts/Roboto-Medium.ttf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "rob";
+    src: url("../fonts/Roboto-Italic.ttf");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "rob";
+    src: url("../fonts/Roboto-Light.ttf");
+    font-weight: lighter;
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+}
+body{
+    background: #efefef;
+}       
+
+/*
+element des
+*/
+/* nav */
+/* background */
+.logo {
+    width: 160px;
+    margin-right: 45px;
+}
+.navbar {
+    background-color: #000000 !important;
+}
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left ul li {
+    list-style: none;
+    display: inline-block;
+}
+/* NAME of website */
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    font-weight: 900;
+    color: white !important;
+}
+.nav-item a {
+    text-decoration: none;
+    font-size: 18px;
+    color: white !important;
+}
+.nav-link:hover {
+    color: #f48c06 !important;
+}
+.sidenav-news {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    background-color: #D9D9D9;
+    padding-top: 24px;
+    position: fixed;
+}
+
+/*BUTTON*/
+.btn-main {
+    background-color: #f48c06;
+    color: white;
+    border-radius: 1rem;
+    padding: 4px 15px;
+    text-align: center;
+    border: none;
+}
+.btn-sub {
+    background-color: none;
+    color: white;
+    border-radius: 0.9rem;
+    padding: 4px 15px;
+    text-align: center;
+    border: solid;
+    border-color: cadetblue;
+}
+
+.btn-main:hover {
+    background-color: #e07f00!important;
+    border: none;
+    color: white;
+}
+.btn-sub:hover {
+    background-color:darkslategray;
+}
+/*
+    ICON
+*/
+.ic-nav{
+    width:2rem;
+}
+.ic-warning {
+    color: #FFB632!important;
+}
+/*
+    IMAGE
+*/
+

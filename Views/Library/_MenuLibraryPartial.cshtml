@@ -1,0 +1,31 @@
+﻿@model LibraryViewModel
+
+<form method="post" asp-controller="Library" asp-action="Index">
+     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+     <div class="container-fluid">
+                <label class="control-label textnav-titile">Môn học</label>
+                <select asp-for="SubjectId" asp-items="@ViewBag.SubjectId" class="form-control ">
+                    <option value="0">Chọn môn học</option>
+                </select>
+                
+                <br/>
+                
+                <label class="control-label textnav-titile">Độ khó</label>
+                <br/>
+                <img src="../ic/star1.png" />
+                <img src="../ic/star2.png" />
+                <img src="../ic/star3.png" />
+                
+     </div>
+     <div class="container-fluid mt-3">
+                <input type="text" asp-for="Searching" placeholder="tìm kiếm" class="rounded"/>
+     </div>
+             <!--Button-->
+            <div class="form-group row align-content-end">
+                <div class="col-3 offset-3">
+                    <button class="btn btn-main form-control p-0 d-flex align-items-center justify-content-center" style="width:6rem; margin-top: 150px" type="submit">
+                        Tìm kiếm
+                    </button>
+                </div>
+            </div>
+</form>

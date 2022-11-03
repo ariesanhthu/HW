@@ -13,21 +13,24 @@
             <div class="container ml-5 mt-3">
                 <div class="table">
                     <div class="row">
-                            <a onclick=Clear("/PostSaved/Clear") class="nav-link bg-warning rounded" style="cursor:pointer">
+                            <a onclick=Clear("/PostSaved/Clear") class="text-white nav-link bg-danger rounded" style="cursor:pointer">
                                 Xóa tất cả
                             </a>
                             &nbsp;
-                            <span class="bg-primary rounded col-3">Số lượng bài viết đã lưu: @Model.TotalAmount</span>
+                            <div class="bg-success rounded col-3 text-white d-flex p-0 align-items-center justify-content-center">
+                                <label class=" m-0">Số lượng bài viết đã lưu: @Model.TotalAmount</label>
+                            </div>
            
                     </div>
+                    <br/>
                     <div class="column">
                         @foreach(var item in Model.PostSavedItems)
                         {
                             <div class="card">
                                 <div class="card-body">
                                     <div class="btn-block">
-                                        <p class="card-title">@item.Title</p>
                                         <p class="card-text">@item.Time</p>
+                                        <p class="card-title">@item.Title</p>
                                     </div>
                                 </div>
                             </div>

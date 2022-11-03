@@ -1,8 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<PostNewFeed>
+@{
+    ViewData["Title"] = "Trang chủ";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="text-center">
+       <ejs-calendar id="calendar"></ejs-calendar>
+    </div>
+    <div class="col-md-7">
+        <ejs-grid id="Grid" dataSource="@Model" allowPaging="true" allowSorting="true">
+          <e-grid-pagesettings pageSize="5"></e-grid-pagesettings>
+                <e-grid-columns>
+                    <e-grid-column field="OnUpdated" headerText="Ngày cập nhật" textAlign="Right" width="120"></e-grid-column>
+                    <e-grid-column field="Title" headerText="Tiêu đề"  width="150"></e-grid-column> 
+                    <e-grid-column width="100px" template="#actionDetail"></e-grid-column> 
+                </e-grid-columns>
+        </ejs-grid>
+    </div>
 </div>
+<script id="actionDetail" type="text/x-template">
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-secondary" href="/PostNewFeed/Detail/${Id}">Đọc thêm</a>
+    </div>
+</script>

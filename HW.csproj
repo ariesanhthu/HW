@@ -6,19 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20221009061434_minions.cs" />
+    <Compile Remove="Migrations\20221009061434_minions.Designer.cs" />
+    <Compile Remove="Migrations\20221012141309_UpdateAppUser.cs" />
+    <Compile Remove="Migrations\20221012141309_UpdateAppUser.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.0" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.22" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Pages\" />
+    	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+     	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" /> 
+	  <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      	  	<PrivateAssets>all</PrivateAssets>
+      	  	<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>   
+	  </PackageReference>
+	  <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="20.3.0.50" />
+	  
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,72 @@
+﻿@model UserInfo
+<div class="container rounded bg-white mt-5" style="margin: auto;">
+    <div class="row">
+        <!--Avatar-->
+        <div class="col-4 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                @{
+                    var img = @Model.AvartarImg ?? "noimg.png";
+                }
+                <img class="rounded-circle mt-5" width="150px" src="~/media/NewsFeed/@img">
+            </div>
+        </div>
+        <div class="col-8 border-right">
+            <div class="p-3 py-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">CHỈNH SỬA HỒ SƠ</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <label class="control-label">@Model.LastName</label>
+                    </div>
+                    <div class="col-md-6">
+                         <label asp-for="FirstName" class="control-label"></label>
+                         <label class="control-label">@Model.FirstName</label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    
+                    <div class="col-md-12">
+                        <label asp-for="Email" class="control-label"></label>
+                        <label class="control-label">@Model.Email</label>
+                    </div>
+                </div>
+
+                <div class="mt-2 text-center">
+                      <div>
+                        <a asp-action="ChangePassword" class="btn btn-warning">Đổi mật khẩu</a>
+                    </div>
+                    <div>
+                        <a asp-action="Edit" class="btn btn-warning">Chỉnh sửa</a>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-content">
+    <div class="control-section col-lg-9" align='center'>
+        <ejs-accumulationchart id="container" load="load" enableAnimation="false">
+            <e-accumulationchart-center x="50%" y="50%"></e-accumulationchart-center>
+            <e-accumulationchart-tooltipsettings enable="true"></e-accumulationchart-tooltipsettings>
+            <e-accumulationchart-legendsettings visible="false">
+            </e-accumulationchart-legendsettings>
+            <e-accumulation-series-collection>
+                <e-accumulation-series dataSource="@ViewBag.dataSource" xName="xValue" yName="yValue" name="Bài tập" radius="70%" startAngle="0" endAngle="360" explodeIndex="5" explode="true" explodeOffset="10%">
+                    <e-accumulationseries-datalabel name="text" visible="true">
+                        <e-font fontWeight="600"></e-font>
+                    </e-accumulationseries-datalabel>
+                </e-accumulation-series>
+            </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+    </div>
+</div>
+<script>
+    function load(args) 
+    {
+        var indexedTheme = location.hash.split('/')[1];
+        indexedTheme = indexedTheme ? indexedTheme : 'Material';
+        args.accumulation.theme = (indexedTheme.charAt(0).toUpperCase() + indexedTheme.slice(1).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+    }
+</script>

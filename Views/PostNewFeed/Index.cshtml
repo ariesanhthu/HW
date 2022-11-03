@@ -16,18 +16,18 @@
     => Cái cần cập nhật là MENUTOPIC - viewcomponent
     ]
 *@
-<div class="row">
+<div class="d-flex justify-content-around">
 
     <!--Menu-->
    @* <div>
         @await Component.InvokeAsync("SmallPostTotal")
     </div>*@
-    <div class = "col-2 p-0 ml-0">
+    <div class = "">
         @await Component.InvokeAsync("MenuTopic")
     </div>
 
     <!--Bài viết-->
-    <div class = "col-10 p-0">
+    <div class = "container-fluid">
         <partial name="_NewsfeedPartial" model="@Model"/>
     </div>
 </div>

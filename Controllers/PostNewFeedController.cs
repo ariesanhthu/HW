@@ -25,13 +25,21 @@ namespace HW.Controllers
             
             if (Obj == null) return View(await _context.PostNewFeeds.ToListAsync());
 
-            var posts = await _context.PostNewFeeds.OrderBy(x => x.Time)
+            var posts = await _context.PostNewFeeds.OrderBy(x => x.OnCreated)
                                             .Where(x => x.SubjectId == Obj.Id).ToListAsync();
             
             if (posts == null) return View(await _context.PostNewFeeds.ToListAsync());
             ViewBag.TopicName = Obj.Name;
             ViewBag.Total = Obj.Total;
+
             return View(posts);
+        }
+
+        public async Task<IActionResult> Detail(int Id)
+        {
+            var Obj = await _context.PostNewFeeds.FirstOrDefaultAsync(x => x.Id == Id);
+            if (Obj == null) return View();
+            return View(Obj);
         }
     }
 }
